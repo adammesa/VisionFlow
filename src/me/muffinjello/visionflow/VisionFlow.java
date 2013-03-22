@@ -1,8 +1,10 @@
 package me.muffinjello.visionflow;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,15 +21,16 @@ public class VisionFlow extends JavaPlugin implements Listener {
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args){
         if (command.getName().equalsIgnoreCase("vision")){
             if (sender.hasPermission("visionflow.vision")){
+                Player player = Bukkit.getPlayer(sender);
                 if (args.length >= 1){
                     String argtwo = args[0].trim();
                     if (argtwo.equalsIgnoreCase("on")){
-                        sender.removePotionEffect(PotionEffectType.NIGHT_VISION);
-                        sender.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 18000, 1));
+                        player.removePotionEffect(PotionEffectType.NIGHT_VISION);
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 18000, 1));
                         sender.sendMessage(ChatColor.YELLOW + "Turned vision " + ChatColor.GOLD + "on");
                     } else if(argtwo.equalsIgnoreCase("off")){
                         sender.sendMessage(ChatColor.YELLOW + "Turned vision " + ChatColor.RED + "off");
-                        sender.removePotionEffect(PotionEffectType.NIGHT_VISION);
+                        player.removePotionEffect(PotionEffectType.NIGHT_VISION);
                     }
                 } else {
                     sender.sendMessage(ChatColor.RED + "You don't have permission to do that!");
