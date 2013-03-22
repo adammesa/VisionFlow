@@ -1,0 +1,7 @@
+name: Visionflow
+main: me.muffinjello.visionflow.VisionFlow
+version: "0.01"
+commands:
+    vision:
+        description: See your world around you as bright as day!
+        usage: /vision <on/off>

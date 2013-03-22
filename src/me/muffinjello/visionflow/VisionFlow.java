@@ -20,22 +20,25 @@ public class VisionFlow extends JavaPlugin implements Listener {
     }
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args){
         if (command.getName().equalsIgnoreCase("vision")){
-            if (sender.hasPermission("visionflow.vision")){
-                Player player = Bukkit.getPlayer(sender);
+            if (sender.hasPermission("visionflow.vision") || sender.isOp()){
+                Player player = Bukkit.getPlayer(sender.getName());
                 if (args.length >= 1){
                     String argtwo = args[0].trim();
                     if (argtwo.equalsIgnoreCase("on")){
                         player.removePotionEffect(PotionEffectType.NIGHT_VISION);
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 18000, 1));
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 1));
                         sender.sendMessage(ChatColor.YELLOW + "Turned vision " + ChatColor.GOLD + "on");
                     } else if(argtwo.equalsIgnoreCase("off")){
                         sender.sendMessage(ChatColor.YELLOW + "Turned vision " + ChatColor.RED + "off");
                         player.removePotionEffect(PotionEffectType.NIGHT_VISION);
                     }
                 } else {
-                    sender.sendMessage(ChatColor.RED + "You don't have permission to do that!");
+                    sender.sendMessage(ChatColor.YELLOW + "You need to type /vision <on/off> !");
                 }
+            } else {
+                sender.sendMessage(ChatColor.RED + "You don't have permission to do that!");
             }
+            return true;
         }
         return false;
     }
