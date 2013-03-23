@@ -32,14 +32,12 @@ public class VisionFlow extends JavaPlugin implements Listener {
                         sender.sendMessage(ChatColor.YELLOW + "Turned vision " + ChatColor.RED + "off");
                         player.removePotionEffect(PotionEffectType.NIGHT_VISION);
                     }
-                } else {
-                    sender.sendMessage(ChatColor.YELLOW + "You need to type /vision <on/off> !");
-                }
             } else {
-                sender.sendMessage(ChatColor.RED + "You don't have permission to do that!");
+                sender.sendMessage(ChatColor.YELLOW + "You need to type /vision <on/off> !");
             }
             return true;
         }
         return false;
+    } return false;
     }
 }
