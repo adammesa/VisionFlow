@@ -18,6 +18,7 @@ public class VisionFlow extends JavaPlugin implements Listener {
         PluginDescriptionFile pdfFile = this.getDescription();
         this.getLogger().info(pdfFile.getName() + " version " + pdfFile.getVersion() + " has been enabled!");
     }
+    //Command
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args){
         if (command.getName().equalsIgnoreCase("vision")){
             if (sender.hasPermission("visionflow.vision") || sender.isOp()){
